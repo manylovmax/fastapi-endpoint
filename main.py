@@ -7,7 +7,7 @@ app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
 
 
-@app.get("/", response_model=list[schemas.Post])
+@app.get("/posts", response_model=list[schemas.Post])
 def read_root(offset: int = 0, limit: int = 3):
     session = SessionLocal()
     posts = session.query(models.Post).offset(offset).limit(limit).all()
